@@ -1,0 +1,140 @@
+1. HTML Code (index.html)HTML<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assignment 6.1 — Box Model Inspection</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Box Model Inspection</h1>
+    <p>Comparing CSS Box Models across different layout elements</p>
+  </header>
+
+  <main class="container">
+    
+    <!-- Card 1: Default Content-Box with Light Padding & Border -->
+    <article class="card card-1">
+      <h2>Card 1: Standard Box</h2>
+      <p>This box uses default <code>content-box</code> sizing. Padding and borders are added on top of the width.</p>
+    </article>
+
+    <!-- Card 2: Border-Box with Medium Padding & Heavy Border -->
+    <article class="card card-2">
+      <h2>Card 2: Border-Box</h2>
+      <p>This box uses <code>border-box</code>. Width includes padding and border, keeping the overall box size fixed.</p>
+    </article>
+
+    <!-- Card 3: Content-Box with Large Padding & Dashed Border -->
+    <article class="card card-3">
+      <h2>Card 3: Feature Box</h2>
+      <p>This card demonstrates large padding and margins to highlight outer spacing in DevTools inspection.</p>
+    </article>
+
+  </main>
+
+</body>
+</html>
+2. CSS Code (style.css)CSS/* Base Reset */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f6f9;
+  color: #333;
+  line-height: 1.6;
+  padding: 30px 20px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+header h1 {
+  font-size: 2.2rem;
+  color: #1e293b;
+}
+
+header p {
+  color: #64748b;
+  font-size: 1.1rem;
+}
+
+/* Layout Container */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Base Card Styling */
+.card {
+  width: 280px; /* Base width */
+  background-color: #ffffff;
+  border-radius: 8px;
+}
+
+.card h2 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  color: #0f172a;
+}
+
+.card p {
+  font-size: 0.95rem;
+  color: #475569;
+}
+
+.card code {
+  background-color: #f1f5f9;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: #2563eb;
+  font-family: monospace;
+}
+
+/* ==========================================
+   CARD 1: content-box (Default)
+   ========================================== */
+.card-1 {
+  box-sizing: content-box;
+  padding: 15px;
+  border: 4px solid #3b82f6; /* Blue Border */
+  margin: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  /* Total Computed Width = 280 (width) + 30 (padding) + 8 (border) = 318px */
+}
+
+/* ==========================================
+   CARD 2: border-box
+   ========================================== */
+.card-2 {
+  box-sizing: border-box;
+  padding: 25px;
+  border: 8px solid #10b981; /* Green Border */
+  margin: 25px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  /* Total Computed Width = 280px (Width includes content, padding, & border) */
+}
+
+/* ==========================================
+   CARD 3: content-box with Large Spacing
+   ========================================== */
+.card-3 {
+  box-sizing: content-box;
+  padding: 35px;
+  border: 6px dashed #f59e0b; /* Amber Dashed Border */
+  margin: 35px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  /* Total Computed Width = 280 + 70 + 12 = 362px */
+}
+3. Explanation of Box Model ComponentsComponentColor in Chrome DevToolsDescriptionContentBlue / Light BlueThe central area where text, images, or child elements reside. Dimensions are defined by width and height.PaddingGreenThe transparent area surrounding the content, inside the border. Clears space between content and border.BorderYellow / OrangeWraps around the padding and content. Accepts style, width, and color (e.g., 4px solid #3b82f6).MarginOrange / PeachThe outermost transparent layer that creates space between this element and neighboring elements.4. content-box vs border-box Comparisonbox-sizing: content-box (Default)Formula: Total Width = width + left/right padding + left/right borderSetting width: 280px with 15px padding and 4px border results in an actual rendered element width of 318px.box-sizing: border-box (Recommended)Formula: Total Width = width (Padding and Border are absorbed inward).Setting width: 280px keeps the element's actual rendered width at 280px, while reducing the inner content area.5. Steps to Inspect in Chrome DevTools & Take ScreenshotOpen your HTML file in Google Chrome.Right-click on any card and select Inspect (or press F12 / Cmd + Option + I).In the Elements panel, hover over <article class="card card-1">.In the bottom/side panel under the Computed tab, scroll down to see the Box Model Diagram.Observe the nested boxes representing Content, Padding, Border, and Margin with their pixel values.Press Cmd + Shift + 4 (Mac) or Windows + Shift + S (Windows) to capture the Chrome window with the highlighted page element and DevTools box model diagram open side-by-side for your submission screenshot.Interactive Visualizer ToolI have also generated an interactive visual application below where you can adjust margins, borders, padding, and box-sizing live to see computed pixel values and box model layers generated dynamically:
